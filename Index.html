@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banansense CS2 | External Suite</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #ffd700;
+            --secondary-orange: #ff6b00;
+            --accent-green: #00ff00;
+            --discord-purple: #5865F2;
+            --telegram-blue: #0088cc;
+            --youtube-red: #FF0000;
+            --github-white: #ffffff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(30, 30, 30, 0.7);
+            --glow-intensity: 0.6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--dark-bg) 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-orange), var(--primary-gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            animation: titleGlow 3s ease-in-out infinite;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 30px rgba(255, 107, 0, 0.5));
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary-orange), var(--primary-gold));
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(255, 107, 0, 0.15) 50%, 
+                rgba(255, 215, 0, 0.05) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 25px;
+            padding: 70px 50px;
+            margin: 60px 0;
+            backdrop-filter: blur(20px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 60px rgba(255, 107, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: conic-gradient(
+                from 0deg,
+                transparent,
+                rgba(255, 215, 0, 0.1),
+                rgba(255, 107, 0, 0.1),
+                rgba(255, 215, 0, 0.1),
+                transparent
+            );
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .download-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, var(--secondary-orange), var(--primary-gold));
+            border: none;
+            color: #000;
+            padding: 30px 80px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            z-index: 2;
+            box-shadow: 
+                0 15px 40px rgba(255, 107, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            transition: left 0.6s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 25px 60px rgba(255, 107, 0, 0.7),
+                0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin: 80px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-orange), var(--primary-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+
+        .feature-card h3 i {
+            font-size: 1.3rem;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .feature-card li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .feature-card li:hover {
+            color: #ffffff;
+        }
+
+        .feature-card li:last-child {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ff4444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .working-badge {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.6);
+            color: var(--accent-green);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            animation: pulseGreen 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGreen {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Changelog Section */
+        .changelog-section {
+            margin: 80px 0;
+        }
+
+        .changelog-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .changelog-title {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .changelog-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .version-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .version-card.latest {
+            border: 2px solid var(--primary-gold);
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.15) 0%, 
+                rgba(255, 107, 0, 0.1) 100%);
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .version-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .version-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+
+        .version-date {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .version-badge-new {
+            background: var(--accent-green);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .changelog-list {
+            list-style: none;
+        }
+
+        .changelog-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .changelog-item:last-child {
+            border-bottom: none;
+        }
+
+        .changelog-item i {
+            color: var(--accent-green);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .changelog-type {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .type-added {
+            background: rgba(0, 255, 0, 0.2);
+            color: var(--accent-green);
+        }
+
+        .type-fixed {
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .type-improved {
+            background: rgba(0, 136, 255, 0.2);
+            color: #0088ff;
+        }
+
+        .type-security {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            text-align: center;
+            margin: 60px 0;
+            padding: 50px;
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                rgba(255, 107, 0, 0.1) 50%, 
+                transparent 100%);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(15px);
+        }
+
+        .social-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transition: left 0.6s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .social-card:hover::before {
+            left: 100%;
+        }
+
+        .social-card.discord {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.2), rgba(88, 101, 242, 0.1));
+            border-color: rgba(88, 101, 242, 0.4);
+        }
+
+        .social-card.telegram {
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.2), rgba(0, 136, 204, 0.1));
+            border-color: rgba(0, 136, 204, 0.4);
+        }
+
+        .social-card.youtube {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1));
+            border-color: rgba(255, 0, 0, 0.4);
+        }
+
+        .social-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card.discord .social-icon {
+            color: var(--discord-purple);
+        }
+
+        .social-card.telegram .social-icon {
+            color: var(--telegram-blue);
+        }
+
+        .social-card.youtube .social-icon {
+            color: var(--youtube-red);
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2);
+        }
+
+        .social-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .social-desc {
+            font-size: 0.9rem;
+            color: #cccccc;
+            opacity: 0.8;
+        }
+
+        .info-section {
+            text-align: center;
+            margin-top: 60px;
+            color: #888;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .download-btn {
+                padding: 25px 50px;
+                font-size: 1.3rem;
+            }
+            
+            .download-section {
+                padding: 40px 25px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-card li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .version-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">BANANSENSE CS2</h1>
+            <p class="subtitle">ULTIMATE EXTERNAL GAME ENHANCEMENT SUITE</p>
+            <div class="version-badge">
+                <i class="fas fa-star"></i> ALPHA 1.0.0 <i class="fas fa-star"></i>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <div class="download-content">
+                <button class="download-btn" onclick="downloadPredefinedFile()">
+                    <i class="fas fa-download"></i> DOWNLOAD BANANSENSE ALPHA
+                </button>
+            </div>
+        </div>
+
+        <!-- Changelog Section -->
+        <div class="changelog-section">
+            <div class="changelog-header">
+                <h2 class="changelog-title">
+                    <i class="fas fa-history"></i> VERSION HISTORY
+                </h2>
+                <p style="color: #cccccc;">Stay updated with the latest changes and improvements</p>
+            </div>
+
+            <div class="changelog-grid">
+                <!-- Latest Version -->
+                <div class="version-card latest">
+                    <div class="version-header">
+                        <div class="version-number">v1.0.0 - Alpha Release</div>
+                        <div class="version-date">October 2025</div>
+                        <div class="version-badge-new">LATEST</div>
+                    </div>
+                    <ul class="changelog-list">
+                        <li class="changelog-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>
+                                <span class="changelog-type type-added">ADDED</span>
+                                Initial public alpha release
+                            </span>
+                        </li>
+                        <li class="changelog-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>
+                                <span class="changelog-type type-added">ADDED</span>
+                                Basic triggerbot functionality
+                            </span>
+                        </li>
+                        <li class="changelog-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>
+                                <span class="changelog-type type-added">ADDED</span>
+                                Bunny hop
+                            </span>
+                        </li>
+                        <li class="changelog-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>
+                                <span class="changelog-type type-added">ADDED</span>
+                                Anti-flash
+                            </span>
+                        </li>
+                        <li class="changelog-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>
+                                <span class="changelog-type type-added">ADDED</span>
+                                Bomb timer
+                            </span>
+                        </li>
+                        <li class="changelog-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>
+                                <span class="changelog-type type-security">SECURITY</span>
+                                Basic anti-detection system
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3><i class="fas fa-eye"></i> VISUAL ENHANCEMENTS</h3>
+                <ul>
+                    <li>Bomb Timer <span class="status-badge working-badge">ACTIVE</span></li>
+                    <li>ESP <span class="status-badge">TESTING</span></li>
+                    <li>Weapon ESP <span class="status-badge">TESTING</span></li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-crosshairs"></i> AIM ASSISTANCE</h3>
+                <ul>
+                    <li>Triggerbot <span class="status-badge working-badge">ACTIVE</span></li>
+                    <li>Auto Pistol <span class="status-badge working-badge">ACTIVE</span></li>
+                    <li>Rage AimLock <span class="status-badge">DETECT</span></li>
+                    <li>Recoil Control <span class="status-badge">DETECT</span></li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-cogs"></i> MISC FEATURES</h3>
+                <ul>
+                    <li>Bunny Hop <span class="status-badge working-badge">ACTIVE</span></li>
+                    <li>Anti-Flash <span class="status-badge working-badge">ACTIVE</span></li>
+                    <li>Radar Hack <span class="status-badge">TESTING</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <h2 class="social-title">JOIN OUR COMMUNITY</h2>
+            <div class="social-grid">
+                <a href="https://discord.gg/DJrSCpNNXK" class="social-card discord" target="_blank">
+                    <div class="social-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="social-name">Discord</div>
+                    <div class="social-desc">Join our community for support and updates</div>
+                </a>
+
+                <a href="https://t.me/Bananhack_cc" class="social-card telegram" target="_blank">
+                    <div class="social-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="social-name">Telegram</div>
+                    <div class="social-desc">Get instant news and announcements</div>
+                </a>
+
+                <a href="https://www.youtube.com/@BanansenseOfficial" class="social-card youtube" target="_blank">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="social-name">YouTube</div>
+                    <div class="social-desc">Watch tutorials and showcases</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Undetected</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">v1.0.0</div>
+                <div class="stat-label">Latest Version</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <p><i class="fas fa-shield-alt"></i> Version: Alpha 1.0.0 | Last Updated: Today | Compatibility: CS2 Latest Build</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                <i class="fas fa-exclamation-triangle"></i> Use at your own risk, you can be banned anyway!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const PREDEFINED_FILE_URL = 'https://mega.nz/file/TFl2HRBZ#seEoj8UsTKYzblc8TJtUF3MP4w4aukCLBux4nZJIbNQ';
+        const PREDEFINED_FILE_NAME = 'Banansense_ext.zip';
+
+        function downloadPredefinedFile() {
+            console.log('Download:', PREDEFINED_FILE_URL);
+            
+            const link = document.createElement('a');
+            link.href = PREDEFINED_FILE_URL;
+            link.download = PREDEFINED_FILE_NAME;
+            link.style.display = 'none';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = PREDEFINED_FILE_URL;
+            document.body.appendChild(iframe);
+
+            const btn = document.querySelector('.download-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-sync fa-spin"></i> DOWNLOADING...';
+            btn.style.opacity = '0.8';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.opacity = '1';
+                btn.disabled = false;
+            }, 3000);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.feature-card, .social-card, .version-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-item, .social-card, .version-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
