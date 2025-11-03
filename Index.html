@@ -56,6 +56,263 @@
             100% { transform: scale(1.1) rotate(180deg); }
         }
 
+        /* Auth Modal */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.95) 0%, 
+                rgba(50, 50, 50, 0.9) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 450px;
+            backdrop-filter: blur(20px);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: #cccccc;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            color: var(--primary-gold);
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #cccccc;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--secondary-orange), var(--primary-gold));
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        .close-auth {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #cccccc;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-auth:hover {
+            color: var(--primary-gold);
+        }
+
+        /* User Panel */
+        .user-panel {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--secondary-orange), var(--primary-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-weight: 600;
+            color: var(--primary-gold);
+        }
+
+        .user-status {
+            font-size: 0.8rem;
+            color: #00ff00;
+        }
+
+        .user-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            margin-top: 10px;
+            min-width: 200px;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .user-menu.show {
+            display: block;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+        }
+
+        /* Auth Button */
+        .auth-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .auth-button:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b00, #ffd700);
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 10000;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Premium Features */
+        .premium-badge {
+            background: linear-gradient(45deg, var(--primary-gold), var(--secondary-orange));
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -647,10 +904,110 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+            
+            .auth-content {
+                width: 95%;
+                padding: 30px 20px;
+            }
+            
+            .user-panel {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .auth-button {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-content">
+            <button class="close-auth" onclick="closeAuthModal()">&times;</button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Username or Email</label>
+                    <input type="text" class="form-input" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" id="registerUsername" required minlength="3">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="registerPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" id="registerConfirmPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Panel -->
+    <div class="user-panel" id="userPanel">
+        <div class="user-info" onclick="toggleUserMenu()">
+            <div class="user-avatar" id="userAvatar">U</div>
+            <div class="user-details">
+                <div class="username" id="username">User</div>
+                <div class="user-status" id="userStatus">Free</div>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="user-menu" id="userMenu">
+            <div class="menu-item" onclick="showProfile()">
+                <i class="fas fa-user"></i> Profile
+            </div>
+            <div class="menu-item" onclick="showDownloads()">
+                <i class="fas fa-download"></i> My Downloads
+            </div>
+            <div class="menu-item" onclick="upgradePremium()">
+                <i class="fas fa-crown"></i> Upgrade to Premium
+            </div>
+            <div class="menu-divider"></div>
+            <div class="menu-item" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Button -->
+    <button class="auth-button" id="authButton" onclick="openAuthModal()">
+        <i class="fas fa-user"></i> Login
+    </button>
+
     <div class="container">
         <div class="header">
             <h1 class="title">BANANSENSE CS2</h1>
@@ -662,9 +1019,12 @@
 
         <div class="download-section">
             <div class="download-content">
-                <button class="download-btn" onclick="downloadPredefinedFile()">
+                <button class="download-btn" onclick="handleDownload()">
                     <i class="fas fa-download"></i> DOWNLOAD BANANSENSE ALPHA
                 </button>
+                <p id="downloadStatus" style="margin-top: 15px; color: #cccccc; font-size: 0.9rem;">
+                    Login to track your downloads and unlock premium features!
+                </p>
             </div>
         </div>
 
@@ -730,6 +1090,8 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
 
         <div class="features-grid">
             <div class="feature-card">
@@ -815,39 +1177,304 @@
     </div>
 
     <script>
-        const PREDEFINED_FILE_URL = 'https://www.mediafire.com/file/uw9fxb1nt86tz07/Banansense_ext._v1.rar/file';
-        const PREDEFINED_FILE_NAME = 'Banansense_ext.zip';
+        // User Management System
+        class UserManager {
+            constructor() {
+                this.users = JSON.parse(localStorage.getItem('banansense_users')) || [];
+                this.currentUser = JSON.parse(localStorage.getItem('banansense_current_user')) || null;
+                this.init();
+            }
 
-        function downloadPredefinedFile() {
-            console.log('Download:', PREDEFINED_FILE_URL);
+            init() {
+                this.updateUI();
+                this.createDemoUser();
+            }
+
+            register(userData) {
+                // Check if user already exists
+                if (this.users.find(u => u.username === userData.username)) {
+                    throw new Error('Username already exists');
+                }
+                if (this.users.find(u => u.email === userData.email)) {
+                    throw new Error('Email already registered');
+                }
+
+                // Validate passwords match
+                if (userData.password !== userData.confirmPassword) {
+                    throw new Error('Passwords do not match');
+                }
+
+                // Create new user
+                const newUser = {
+                    id: this.generateId(),
+                    username: userData.username,
+                    email: userData.email,
+                    password: this.hashPassword(userData.password),
+                    createdAt: new Date().toISOString(),
+                    lastLogin: null,
+                    isPremium: false,
+                    downloads: 0,
+                    avatar: userData.username.charAt(0).toUpperCase(),
+                    joinDate: new Date().toLocaleDateString()
+                };
+
+                this.users.push(newUser);
+                this.saveUsers();
+                return newUser;
+            }
+
+            login(identifier, password) {
+                const user = this.users.find(u => 
+                    u.username === identifier || u.email === identifier
+                );
+
+                if (!user) {
+                    throw new Error('User not found');
+                }
+
+                if (user.password !== this.hashPassword(password)) {
+                    throw new Error('Invalid password');
+                }
+
+                user.lastLogin = new Date().toISOString();
+                this.currentUser = user;
+                this.saveUsers();
+                this.saveCurrentUser();
+                return user;
+            }
+
+            logout() {
+                this.currentUser = null;
+                this.saveCurrentUser();
+                this.updateUI();
+            }
+
+            upgradeToPremium() {
+                if (this.currentUser) {
+                    this.currentUser.isPremium = true;
+                    this.saveUsers();
+                    this.saveCurrentUser();
+                    this.updateUI();
+                }
+            }
+
+            recordDownload() {
+                if (this.currentUser) {
+                    this.currentUser.downloads++;
+                    this.saveUsers();
+                    this.saveCurrentUser();
+                    this.updateUI();
+                }
+            }
+
+            // Utility methods
+            generateId() {
+                return Math.random().toString(36).substr(2, 9);
+            }
+
+            hashPassword(password) {
+                // Simple hash for demo - in production use proper hashing
+                return btoa(password);
+            }
+
+            saveUsers() {
+                localStorage.setItem('banansense_users', JSON.stringify(this.users));
+            }
+
+            saveCurrentUser() {
+                localStorage.setItem('banansense_current_user', JSON.stringify(this.currentUser));
+            }
+
+            updateUI() {
+                const authButton = document.getElementById('authButton');
+                const userPanel = document.getElementById('userPanel');
+                const downloadStatus = document.getElementById('downloadStatus');
+
+                if (this.currentUser) {
+                    authButton.style.display = 'none';
+                    userPanel.style.display = 'block';
+                    
+                    // Update user info
+                    document.getElementById('username').textContent = this.currentUser.username;
+                    document.getElementById('userAvatar').textContent = this.currentUser.avatar;
+                    document.getElementById('userStatus').textContent = 
+                        this.currentUser.isPremium ? 'Premium User' : 'Free User';
+                    document.getElementById('userStatus').style.color = 
+                        this.currentUser.isPremium ? '#ffd700' : '#00ff00';
+
+                    // Update download status
+                    downloadStatus.innerHTML = `
+                        Welcome back, <strong>${this.currentUser.username}</strong>! 
+                        ${this.currentUser.isPremium ? '🎉 <strong>Premium features unlocked!</strong>' : ''}
+                        <br>Downloads: <strong>${this.currentUser.downloads}</strong>
+                        ${this.currentUser.isPremium ? '' : '<br>Upgrade to Premium for exclusive features!'}
+                    `;
+                } else {
+                    authButton.style.display = 'flex';
+                    userPanel.style.display = 'none';
+                    downloadStatus.innerHTML = 'Login to track your downloads and unlock premium features!';
+                }
+            }
+
+            createDemoUser() {
+                if (this.users.length === 0) {
+                    try {
+                        this.register({
+                            username: 'demo',
+                            email: 'demo@banansense.com',
+                            password: 'demo123',
+                            confirmPassword: 'demo123'
+                        });
+                        console.log('Demo user created: demo / demo123');
+                    } catch (e) {
+                        console.log('Demo user already exists');
+                    }
+                }
+            }
+        }
+
+        // Initialize User Manager
+        const userManager = new UserManager();
+
+        // Auth Modal Functions
+        function openAuthModal() {
+            document.getElementById('authModal').style.display = 'block';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+            resetForms();
+        }
+
+        function switchAuthTab(tab) {
+            // Update tabs
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
             
+            // Activate selected tab
+            event.target.classList.add('active');
+            document.getElementById(tab + 'Form').classList.add('active');
+        }
+
+        function resetForms() {
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.value = '';
+            });
+        }
+
+        // Form Handlers
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const formData = {
+                username: document.getElementById('registerUsername').value,
+                email: document.getElementById('registerEmail').value,
+                password: document.getElementById('registerPassword').value,
+                confirmPassword: document.getElementById('registerConfirmPassword').value
+            };
+
+            try {
+                const user = userManager.register(formData);
+                userManager.login(formData.username, formData.password);
+                showNotification('🎉 Account created successfully! Welcome to Banansense!');
+                closeAuthModal();
+                userManager.updateUI();
+            } catch (error) {
+                showNotification('❌ ' + error.message);
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const identifier = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                userManager.login(identifier, password);
+                showNotification('👋 Welcome back, ' + identifier + '!');
+                closeAuthModal();
+                userManager.updateUI();
+            } catch (error) {
+                showNotification('❌ ' + error.message);
+            }
+        }
+
+        function handleLogout() {
+            userManager.logout();
+            showNotification('👋 Logged out successfully');
+            toggleUserMenu();
+        }
+
+        // User Menu Functions
+        function toggleUserMenu() {
+            document.getElementById('userMenu').classList.toggle('show');
+        }
+
+        function showProfile() {
+            showNotification('📊 Profile section coming soon!');
+            toggleUserMenu();
+        }
+
+        function showDownloads() {
+            if (userManager.currentUser) {
+                showNotification(`📥 You have ${userManager.currentUser.downloads} downloads`);
+            }
+            toggleUserMenu();
+        }
+
+        function upgradePremium() {
+            userManager.upgradeToPremium();
+            showNotification('👑 Welcome to Premium! All features unlocked!');
+            toggleUserMenu();
+        }
+
+        // Download Handler
+        function handleDownload() {
+            const PREDEFINED_FILE_URL = 'https://www.mediafire.com/file/uw9fxb1nt86tz07/Banansense_ext._v1.rar/file';
+            const PREDEFINED_FILE_NAME = 'Banansense_ext.zip';
+
+            // Record download for logged-in users
+            if (userManager.currentUser) {
+                userManager.recordDownload();
+            }
+
+            // Perform download
             const link = document.createElement('a');
             link.href = PREDEFINED_FILE_URL;
             link.download = PREDEFINED_FILE_NAME;
-            link.style.display = 'none';
-            
-            document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
 
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = PREDEFINED_FILE_URL;
-            document.body.appendChild(iframe);
-
-            const btn = document.querySelector('.download-btn');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-sync fa-spin"></i> DOWNLOADING...';
-            btn.style.opacity = '0.8';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.opacity = '1';
-                btn.disabled = false;
-            }, 3000);
+            showNotification('✅ Download started! ' + (userManager.currentUser ? 'Download counted!' : ''));
         }
 
+        // Notification System
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 4000);
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const authModal = document.getElementById('authModal');
+            const userMenu = document.getElementById('userMenu');
+            const userPanel = document.getElementById('userPanel');
+
+            if (authModal.style.display === 'block' && !event.target.closest('.auth-content')) {
+                closeAuthModal();
+            }
+
+            if (userMenu.classList.contains('show') && !event.target.closest('.user-panel')) {
+                toggleUserMenu();
+            }
+        });
+
+        // Existing animations and effects
         document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.feature-card, .social-card, .version-card');
             cards.forEach(card => {
@@ -880,9 +1507,13 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+
+        // Show welcome message
+        setTimeout(() => {
+            if (!userManager.currentUser) {
+                showNotification('🔐 Create an account to track your downloads and unlock premium features!');
+            }
+        }, 2000);
     </script>
 </body>
-
 </html>
-
-
