@@ -405,34 +405,6 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        /* Новые фичи: Темная тема с переключателем */
-        .theme-switcher {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        .theme-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            color: var(--primary-gold);
-            padding: 10px 15px;
-            border-radius: 25px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .theme-btn:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: scale(1.1);
-        }
-
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -536,12 +508,32 @@
             <div class="download-content">
                 <div class="download-disabled">
                     <button class="download-btn" id="downloadBtn" disabled onclick="downloadPredefinedFile()">
-                        <i class="fas fa-lock"></i> DOWNLOAD PREMIUM SUITE
+                        <i class="fas fa-lock"></i> DOWNLOAD
                     </button>
                 </div>
                 <div style="margin-top: 20px; color: #ff6b6b; font-size: 1rem;">
-                    <i class="fas fa-exclamation-triangle"></i> Продукт на рекоде.
+                    <i class="fas fa-exclamation-triangle"></i> Скачивание временно недоступно. Обновление в процессе...
                 </div>
+            </div>
+        </div>
+
+        <!-- Новые фичи: Счетчики -->
+        <div class="counter-grid">
+            <div class="counter-item">
+                <div class="counter-number" data-target="15427">0</div>
+                <div>Скачиваний</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" data-target="99">0</div>
+                <div>Процент успеха</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" data-target="24">0</div>
+                <div>Часа поддержки</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number" data-target="156">0</div>
+                <div>Активных пользователей</div>
             </div>
         </div>
 
@@ -588,8 +580,6 @@
             </table>
         </div>
 
-
-
         <!-- Остальной контент без изменений -->
         <div class="features-grid">
             <div class="feature-card">
@@ -602,7 +592,7 @@
             <div class="feature-card">
                 <h3><i class="fas fa-crosshairs"></i> AIM ASSISTANCE</h3>
                 <ul>
-                    <li>Triggerbot <span class="status-badge working-badge">ACTIVE</span></li>
+                    <li>Smart Triggerbot <span class="status-badge working-badge">ACTIVE</span></li>
                     <li>Auto Pistol <span class="status-badge working-badge">ACTIVE</span></li>
                     <li>Recoil Control <span class="status-badge working-badge">ACTIVE</span></li>
                 </ul>
@@ -613,8 +603,6 @@
                 <ul>
                     <li>Bunny Hop <span class="status-badge working-badge">ACTIVE</span></li>
                     <li>Anti-Flash <span class="status-badge working-badge">ACTIVE</span></li>
-                    <li>Radar Hack <span class="status-badge">COMING SOON</span></li>
-                    <li>Skin Changer <span class="status-badge">COMING SOON</span></li>
                 </ul>
             </div>
         </div>
@@ -641,32 +629,6 @@
                 
                 updateCounter();
             });
-        }
-
-        // Новые фичи: Система уведомлений
-        function showNotification(message) {
-            const notificationCenter = document.getElementById('notificationCenter');
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = `<i class="fas fa-bell"></i> ${message}`;
-            notificationCenter.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.remove();
-                }, 500);
-            }, 3000);
-        }
-
-        // Новые фичи: Переключение темы
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            showNotification('Тема изменена!');
         }
 
         // Новые фичи: Создание частиц
@@ -728,7 +690,7 @@
             const PREDEFINED_FILE_URL = 'https://www.mediafire.com/file/uw9fxb1nt86tz07/Banansense_ext._v1.rar/file';
             const PREDEFINED_FILE_NAME = 'Banansense_Premium_Suite.zip';
 
-            const link = document.createElement('a');
+            const link = document.createElement('a'); 
             link.href = PREDEFINED_FILE_URL;
             link.download = PREDEFINED_FILE_NAME;
             link.style.display = 'none';
@@ -753,5 +715,3 @@
     </script>
 </body>
 </html>
-
-
